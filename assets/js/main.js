@@ -17,11 +17,14 @@ function convertPokemonToLi(pokemon) {
 
 const pokemonList = document.getElementById("pokemonList");
 
-pokeApi.getPokemons()
-  .then((pokemons) => {
-    const listItems = []
-    for (const pokemon of pokemons) {
-      listItems.push(convertPokemonToLi(pokemon))
-    }
-    console.log(listItems)
-  })
+pokeApi.getPokemons().then((pokemons = []) => {
+  // const newList = pokemons.map((pokemon) => convertPokemonToLi(pokemon));  // simplificando fica a linha de baixo
+  // const newList = pokemons.map(convertPokemonToLi);  // para cada item pokemon, vai invocar esta função, sendo desnecessário informar o parâmetro porque seria redundante.
+  // const newHtml = newList.join("");  // unindo a função map com a join para simplificar mais ainda
+  // const newList = pokemons.map(convertPokemonToLi).join('');
+  // pokemonList.innerHTML += newHtml;
+
+  // O resultado do código acima simplificado e não verboso:
+  pokemonList.innerHTML += pokemons.map(convertPokemonToLi).join('');
+
+});
